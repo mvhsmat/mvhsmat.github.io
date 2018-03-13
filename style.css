@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  background: cadetblue;
+  background-color: Gray;
   font-family: sans-serif;
   margin: 0;
   text-align: center;
@@ -14,7 +14,7 @@ body {
 }
 
 iframe {
-  border: 3px solid cadetblue;
+  border: 3px solid Gray;
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -29,8 +29,22 @@ section {
   flex-wrap: wrap;
 }
 
+h1, h2, h3 {
+  color: white;
+  text-shadow: 0 0 2px black;
+}
+
+a {
+  color: gold;
+  text-shadow: 0 0 2px black;
+}
+
+.main {
+  margin-left: 150px;
+}
+
 .panel {
-  background: lightblue;
+  background: DarkGray;
   margin: 15px;
   padding: 20px;
   box-shadow: 2px 2px 20px black;
@@ -57,4 +71,37 @@ section {
 
 .txt {
   margin: auto 0;
+}
+
+.nav {
+  display: block;
+  margin: 0 0 auto 0;
+  width: 150px;
+  height: 100%;
+  position: fixed;
+  list-style: none;
+  padding: 0;
+  background: rgb(55, 55, 55);
+  border: 1px DarkGray solid;
+}
+
+.nav li a {
+  display: block;
+  padding: 10px;
+  border-bottom: 1px DarkGray solid;
+}
+
+.nav li.current {
+  background: gold;
+}
+
+.nav li.current a {
+  color: rgb(55, 55, 55);
+  text-shadow: none;
+}
+
+.nav li a:hover {
+  background: lightgray;
+  color: gold;
+  text-shadow: 0 0 1px black;
 }
