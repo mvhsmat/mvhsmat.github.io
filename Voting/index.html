@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="text/javascript" src="../index.js"></script>
+  <link rel="stylesheet" type="text/css" href="../style.css">
+
+  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyBexlq67gWxGanlRvcMoggu1wOCNOzlD6g",
+      authDomain: "election-2018-d593d.firebaseapp.com",
+      databaseURL: "https://election-2018-d593d.firebaseio.com",
+      projectId: "election-2018-d593d",
+      storageBucket: "",
+      messagingSenderId: "449857637544"
+    };
+    firebase.initializeApp(config);
+
+    function submit() {
+      let sid = document.getElementById("sID").value.trim();
+      let output = document.getElementById("output");
+      if (!sid.includes("200")) {
+        output.innerHTML = "Input a valid student ID.";
+        return;
+      }
+      let ref = firebase.database().ref(sid);
+      let vote = {};
+      if (document.getElementById("PA").checked) {
+        vote.president = "A";
+      } else if (document.getElementById("PB").checked) {
+        vote.president = "B";
+      } else {
+        output.innerHTML = "Select a president application.";
+        return;
+      }
+
+      if (document.getElementById("VPA").checked) {
+        vote.vicepresident = "A";
+      } else {
+        output.innerHTML = "Select a vice president application.";
+        return;
+      }
+
+      if (document.getElementById("SA").checked) {
+        vote.secretary = "A";
+      } else if (document.getElementById("SB").checked) {
+        vote.secretary = "B";
+      } else if (document.getElementById("SC").checked) {
+        vote.secretary = "C";
+      } else {
+        output.innerHTML = "Select a secretary application.";
+        return;
+      }
+
+      vote.date = new Date().toString();
+
+      ref.push(vote);
+
+      output.innerHTML = "Your vote was submitted successfully."
+    }
+  </script>
+
+</head>
+
+<body>
+  <ul class="nav">
+    <li><a href="../">Home Page</a></li>
+    <li><a href="../ExecApp/">Exec. Apps</a></li>
+    <li class="current"><a href="../Voting/">Voting</a></li>
+  </ul>
+  <div class="main">
+    <header class="panel">
+      <h1>MVHS Mu Alpha Theta</h1>
+    </header>
+    <section class="f1 col">
+      <div class="f1 col panel">
+        <p>
+          The applications are listed by position below. The responses are for the following questions:<br>1) Why do you want this position?<br>2) What makes you a good candidate for this position?<br>3) How have you been involved in mathematics outside
+          of the general classroom setting?<br>4) Explain a topic in mathematics that you find exciting or interesting in 1000 characters or fewer.<br>5) What commitments do you have this school year?</p>
+      </div>
+      <div class="f1 col panel">
+        <h2>President</h2></div>
+      <div class="f1 row">
+        <div class="f1 col panel">
+          <h3>Application A</h3>
+          <p>1) I want to be President because I want to help further the core goals of Mu Alpha Theta to inspire keen interest in mathematics, develop strong scholarship in the subject, and promote the enjoyment of mathematics in students. I will help to
+            inspire a keen interest in mathematics by continuing my plan to host a math competition at the school. Matthew and I have been planning to host this competition for about a year, and I believe that I can bring this idea to fruition. I want
+            to see this competition inspire my fellow peers, and I want to be able to plan and execute this event. I will help to develop strong scholarship in math by increasing the reach of our tutoring program. There are currently many students that
+            struggle in CP, Honors, Gifted, and AP classes alike, so there is demand for peer tutors at teacher tutoring session after school. By allowing our Mu Alpha Theta members more flexibility for tutoring by enabling everyone to tutor any day,
+            we can also reach more students while also giving our own members more opportunities. By electing me President, you can help these struggling students while also giving yourself more opportunities to impact the school in a positive way and
+            spread your love for mathematics. Finally, I want this position so I can promote enjoyment of math. We all know that school math isn’t fun, but what about mini competitions every month where everyone works in groups to solve stimulating math
+            problems with prizes of candy, cookies, and hours?! I know that many people find math boring, but I want to be President so that I can make math something that you will look forward to every month as I continue to make your mathematical experience
+            better.
+            <br><br>2) I believe that I am a good candidate for this position because I have the passion and experience necessary to fulfill my duties as your President. Firstly, I am very passionate about math, and I am extremely involved in math outside
+            of school. I have been competing in various math competitions for nearly 6 years, and I have a lot of experience in applying mathematics in various situations involving medicine, business, and engineering. I solve math problems for fun to
+            improve my skills, and I love to share my knowledge and passion for math with others. I believe I am qualified to be your President because I have two years of experience as the Vice President of Mu Alpha Theta. In addition, I am the only
+            candidate with 3 years of experience on the Mu Alpha Theta Exec Board, giving me insight as to how the club has evolved as we continue to grow and learn together. Additionally, I am a Co-President of FBLA, which means that I have extensive
+            experience leading an organization, yet as I do not bear the full load, I will have lots of time to dedicate to Mu Alpha Theta. I have spent countless hours both after school and at home to plan competitions and meetings as well as develop
+            applications and activities for all members of the honor society in order to ensure that everyone has a fulfilling experience in Mu Alpha Theta. I have been vastly dedicated to this honor society, and I will continue to dedicate my passion
+            and time to serving you as your President.<br><br>3) I began my extracurricular mathematics career at a very young age when I started the Math Team at Twin Rivers MS in 6th grade. Leading and competing on the team furthered my interest in
+            math as I helped spark others’ interest in competition math while honing my own skills and learning new concepts every day. I took my interest to the next level as I began to compete in Math Kangaroo, and I placed 4th in the state of Georgia
+            and top 30 in the nation. In addition, I won the school-wide Continental Math League twice as I began intensively competing. Furthermore, I have carried my passion into high school, beginning as the only Freshman on the Mu Alpha Theta Exec
+            Board under Dr. Lindsey. I have competed in the American Mathematics Contest 8 times (and counting). In addition, I compete in several other math competitions across the state at Georgia Tech, UGA, Columbus State, and numerous other universities.
+            In Odyssey of the Mind, I used my knowledge of mathematics to calculate everything necessary to use two waterwheels but from corrugated plastic to drive a steel vehicle with multiple passengers, and we won first place at the regional and state
+            competitions as well as top 20 in the world. I am highly involved in GAME, and I have helped plan our delegation’s competition as well as competing in the exam myself. Finally, I continue to share my passion for mathematics through tutoring
+            math at my church and as a part of Mu Alpha Theta.<br><br>4) One concept I find interesting is a shortcut- Heron’s Formula, or Hero’s Formula, named after Hero of Alexandria. This formula is used instead of the Law of Cosines to find the area
+            of a triangle. Heron’s Formula is: Area=√(S(S-A)(S-B)(S-C)), where S=(A+B+C)/2. ‘S’ represents the Semi-Perimeter, or half of the perimeter, of the triangle, and ‘A’, ‘B’, and ‘C’ represent the lengths of the 3 legs of the triangle. While
+            this formula may seem a bit complex, it’s really just plug and chug with the side lengths, and it is a lot easier than using the ugly Law of Cosines formulas like cos⁡(B)= (c^2+a^2-b^2)/2ca. Say you must find the area of a triangle with side
+            lengths A= 4, B=13, and C=15. First, you would find the Semi-Perimeter S=(A+B+C)/2=(4+13+15)/2=16. The, just plug in all of your information: √(S(S-A)(S-B)(S-C))= √(16(16-4)(16-13)(16-15))=√(16(12)(3)(1))=√576=24. This is much easier than
+            using angles, cosines, and complicated equations; all you need is Heron’s Formula.<br><br>5) FBLA Co-President, Spanish Honor Society Secretary, National Honor Society.</p>
+        </div>
+        <div class="f1 col panel">
+          <h3>Application B</h3>
+          <p>
+            1) I have a clear plan for how to lead the club and run meetings and activities. I want to have meetings every other week where we briefly cover the agenda (next meeting dates, any updates, etc.) and then do math instead of generic club governing activities.
+            We will tutor those who need help at these meetings and learn competition math so that we perform better at tournaments around the state. We will even have some group competitions for small prizes on occasion at our meetings to encourage learning
+            math and working together. I think this plan is the best for increasing activity in Mu Alpha Theta, and I do not think it will be done properly if I do not earn this position because others fail to understand the purpose of this club.
+            <br><br>2) Of all the students who will be at Mountain View next year, I have the most experience with competition math and could therefore teach it the best to those who want to learn. I have a clear plan for how to run the club and I think
+            more people will respect me and listen to what I have to say than other candidates for this same position. I have a deep understanding of math and can be patient in helping those who don't quite get it. I am accountable and hardworking and
+            can therefore manage this club well.
+            <br><br>3) I attend several math competitions each year with Mr. Jones, and take every extracurricular math exam offered (like the AMC 12 and Kennesaw State math exam). I also do a lot of programming, which is obviously math heavy, especially
+            with vectors.
+            <br><br>4) How conic sections interact with light and the emergent behaviors from reflecting rays cast towards or from them is interesting. A light source placed at the focus of a parabola has all of its beams reflected towards a single direction,
+            all parallel to each other. Conversely, parallel beams of light entering a parabola perpendicular to a line tangent to its vertex will all be directed towards the parabola's focus. A light source placed at one focus of a hyperbola will appear
+            to be located at the other focus, and light from one focus of an ellipse will always be reflected towards the other focus (and a circle is just a special case of an ellipse). Previously, to me, it seemed that conics were rather arbitrary to
+            be teaching students, but after learning about the surprising potential applications like satellite dishes and longer-range flashlights, I appreciated knowing how to work with those shapes much more.
+            <br><br>5) Academic Team, Model UN, and Science Olympiad
+          </p>
+        </div>
+      </div>
+      <div class="f1 col panel">
+        <h2>Vice President</h2></div>
+      <div class="f1 row">
+        <div class="f1 col panel">
+          <h3>Application A</h3>
+          <p>1) I want this position to help grow Mu Alpha Theta as well as build character to become a leader.
+            <br><br>2) I am a hardworking and charismatic character that has a strong passion for math and is willing to dedicate a vast amount of time towards Mu Alpha Theta.
+            <br><br>3) Nearly every weekend, I dedicate time towards math competitions with a team to not only represent the school but to enhance my skills in mathematics.
+            <br><br>4) I find the topic of trigonometric identities to be a genuinely fascinating and exciting branch of mathematics. This is due to the fact that it requires basic algebraic skills to create a foundation as well as a strong problem solving
+            mindset to be able to solve efficiently. Though a plethora of aspects of mathematics require a strong sense of problem solving, trigonometric identities prove to be the perfect balance of difficulty and fun.
+            <br><br>5) Mu Alpha Theta, Math Team, Academic Team, Model UN, and Science Olympiad.</p>
+        </div>
+      </div>
+      <div class="f1 col panel">
+        <h2>Secretary</h2></div>
+      <div class="f1 row">
+        <div class="f1 col panel">
+          <h3>Application A</h3>
+          <p>1) Because it will help me improve my organization and management skills.
+            <br><br>2) Because I am very capable at multitasking and improvising, and I’m frequently at school after the school day working on other work or participating in activites so I’ll be easy to reach at moments notice.
+            <br><br>3) My Alpha Thêta.
+            <br><br>4) My favorite concept is the Pythagorean Theorem because it is such a simple and easy formula to understand yet it is so useful in solving even complex problems.
+            <br><br>5) Wrestling and French Club; Next year: Track, French Club, and Student Council (possibly).</p>
+        </div>
+        <div class="f1 col panel">
+          <h3>Application B</h3>
+          <p>1) I want to be secretary for the very simple purpose that I love math and want to further my knowledge and practice in competition while helping others do the same. I have been a member of Mu Alpha Theta since freshman year, and thus have seen
+            first hand how the club has floundered to an extent. It has been very disappointing to see the disinterest of the student body in math, but I know that as secretary I could work to bridge the gap and unify the club under the various aspects
+            of math by introducing fun mathematical activities and events. I want this position so I can make this club a fun and distinguished group that everyone strives to be a part of.
+            <br><br>2) I am a good candidate for this position because I truly care about mathematics and want to show people that it is so much more than just a torturous topic that students have to be forced through in school. Mathematics affects every
+            aspect of our daily lives and I will strive to show how math can be used outside of expectation and will promote further interest in math by hopefully bringing in people from different careers to talk to the club members about how math affects
+            their jobs. Overall, I am a good candidate as I take a different view on mathematics by seeing value in it in its competitive state and the key importance of its simplicity.
+            <br><br>3) I have been involved with mathematics since the very beginning, as I come from a frugal family and have always put my basic mathematical knowledge to use in order to help my family save the most money. On the competitive side, I
+            have completed and reached the second level in many of the tests that Mr. Jones has administered, I have been a consistent member of the GAME competitions, and I have also joined Jones math team on some of their college math competitions as
+            well as many after school competitions. I have also been nominated for mathematics in the Governors Honors Program for both my sophomore and junior years and have thus far reached the semi finalist stage this year and am waiting to hear back.
+            <br><br>4) A recent topic in my AP Calculus BC class that we covered was optimization. This was incredibly interesting to me as I had heard about the optimization of proteins and various other molecules in chemical and biomolecular engineering,
+            but I had never connected this concept to mathematics. I am strongly interested in the field of chemical engineering as it encompasses math and multiple scientific disciplines that I love, and it is a field in which new research is revolutionizing
+            and improving the health of the population. A key topic in chemical engineering is the optimization of proteins in order to allow for more successful treatments of disease, thus resulting in greater survival from deplorable illnesses such
+            as cancer. I find it incredible that one can use math to calculate the exact size of a molecule that will cooperate with the human body for the best possible result. Optimization proves that math literally has the power to save lives.
+            <br><br>5) Cross Country, Track and Field, National Honor Society, Science National Honor Society
+          </p>
+        </div>
+        <div class="f1 col panel">
+          <h3>Application C</h3>
+          <p>1) I would like to become the secretary of Mu Alpha Theta because I have been a member of this club since my freshmen year. It is one of the clubs that has some sentimental values to me, and I would like to continue the deeper involvement I
+            have with this club. Mu Alpha Theta at our school has developed over the past three years, and I got to witness, be a part, as well as contribute to the development. I believe that along with taking care of my responsibilities as the secretary
+            of the club, I would make a contributing and worthy member of the exec board to allow for even further expansion and development of the club.
+            <br><br>2) The biggest reason I would make a good candidate for this position is because I have previous experience. While experience does not necessarily provide any justification or assurance of a job well done, I personally believe that
+            I am more than qualified to plug in numbers to a spreadsheet. Perhaps it's just me. Anyhow, not only do I already have experience and full grasp on the responsibilities as the secretary, I believe that this position is more than another credentials
+            to put on my college application. Throughout the three years that I have been in this school, I have seen countless number of occasions where people would run for a executive positions of various clubs just to write it on their applications
+            and then proceed to do absolutely nothing for the club. My point is not to attack those people. My point is simply that I actually have aspirations and vision for this club and am willing to put in the necessary effort and time.
+            <br><br>3) The biggest involvement in math outside of the classroom would have to be this club. Through Mu Alpha Theta, I got to experience math competitions that I would not have even known about otherwise. Through this club, I have been
+            involved in math by helping other students understand the subject better, especially for kids that take hard classes.
+            <br><br>4) I am no math genius, and I am also not any where near understanding the convoluted ways of mathematics. However, my biggest interest would be applied math. Yes, theory is great. Solving out complicated questions in a classroom setting
+            is great too. However, I believe that not everything is about theory. We live in a real world with real people where real applications of theory need to be addressed as well, and that is where my biggest interest in math lies.
+            <br><br>5) Cross country, Science National Honor Society </p>
+        </div>
+      </div>
+      <div class="f1 col panel">
+        <h2>Web Master</h2></div>
+      <div class="f1 row">
+        <div class="f1 col panel">No applications were recieved.</div>
+      </div>
+      <div class="f1 row panel">
+        <div class="f1 col">
+          <h3>President</h3>
+          <label for="PA"><input type="radio" id="PA" name="president" value="PA">Application A</input></label>
+          <label for="PB"><input type="radio" id="PB" name="president" value="PB">Application B</input></label>
+        </div>
+        <div class="f1 col">
+          <h3>Vice President</h3>
+          <label for="VPA"><input type="radio" id="VPA" name="vicepresident" value="VPA">Application A</input></label>
+        </div>
+        <div class="f1 col">
+          <h3>Secretary</h3>
+          <label for="SA"><input type="radio" id="SA" name="secretary" value="SA">Application A</input></label>
+          <label for="SB"><input type="radio" id="SB" name="secretary" value="SB">Application B</input></label>
+          <label for="SC"><input type="radio" id="SC" name="secretary" value="SC">Application C</input></label>
+        </div>
+        <div class="f1 col">
+          <p>Your Student Number: </p>
+          <input type="text" id="sID"></input>
+          <br>
+          <button onclick="submit()">Submit Votes</button>
+          <br>
+          <p id="output"></p>
+        </div>
+      </div>
+    </section>
+    <footer class="panel">
+      Copyright © 2017 Adam Hordines. For inquiries, contact <a href=mailto:mvhsmat@gmail.com>mvhsmat@gmail.com</a>.
+    </footer>
+  </div>
+</body>
