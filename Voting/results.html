@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="text/javascript" src="../index.js"></script>
+  <link rel="stylesheet" type="text/css" href="../style.css">
+
+  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyBexlq67gWxGanlRvcMoggu1wOCNOzlD6g",
+      authDomain: "election-2018-d593d.firebaseapp.com",
+      databaseURL: "https://election-2018-d593d.firebaseio.com",
+      projectId: "election-2018-d593d",
+      storageBucket: "",
+      messagingSenderId: "449857637544"
+    };
+    firebase.initializeApp(config);
+
+    // function submit() {
+    //   let sid = document.getElementById("sID").value.trim();
+    //   let output = document.getElementById("output");
+    //   if (!sid.includes("200")) {
+    //     output.innerHTML = "Input a valid student ID.";
+    //     return;
+    //   }
+    //   let ref = firebase.database().ref(sid);
+    //   let vote = {};
+    //   if (document.getElementById("PA").checked) {
+    //     vote.president = "A";
+    //   } else if (document.getElementById("PB").checked) {
+    //     vote.president = "B";
+    //   } else {
+    //     output.innerHTML = "Select a president application.";
+    //     return;
+    //   }
+    //
+    //   if (document.getElementById("VPA").checked) {
+    //     vote.vicepresident = "A";
+    //   } else {
+    //     output.innerHTML = "Select a vice president application.";
+    //     return;
+    //   }
+    //
+    //   if (document.getElementById("SA").checked) {
+    //     vote.secretary = "A";
+    //   } else if (document.getElementById("SB").checked) {
+    //     vote.secretary = "B";
+    //   } else if (document.getElementById("SC").checked) {
+    //     vote.secretary = "C";
+    //   } else {
+    //     output.innerHTML = "Select a secretary application.";
+    //     return;
+    //   }
+    //
+    //   vote.date = new Date().toString();
+    //
+    //   ref.push(vote);
+    //
+    //   output.innerHTML = "Your vote was submitted successfully."
+    // }
+
+    let ref = firebase.database().ref();
+    ref.on("value", process, err => console.error(err));
+
+    function process(data) {
+      let president = {
+        A: 0,
+        B: 0
+      };
+      let vp = {
+        A: 0
+      };
+      let sec = {
+        A: 0,
+        B: 0,
+        C: 0
+      };
+
+      let hashtable = data.val();
+      // console.log(hashtable);
+      for (let studentid in hashtable) {
+        if (hashtable.hasOwnProperty(studentid)) {
+          let votes = hashtable[studentid];
+          // console.log(votes);
+          for (let submission in votes) {
+            if (votes.hasOwnProperty(submission)) {
+              president[votes[submission].president]++;
+              vp[votes[submission].vicepresident]++;
+              sec[votes[submission].secretary]++;
+              break;
+            }
+          }
+        }
+      }
+
+      let output = document.getElementById("output");
+      output.innerHTML = `<h3>President</h3><br>A: ${president.A}<br>B: ${president.B}<br><br><h3>Vice President</h3><br>A: ${vp.A}<br><br><h3>Secretary</h3><br>A: ${sec.A}<br>B: ${sec.B}<br>C: ${sec.C}`;
+    }
+  </script>
+
+</head>
+
+<body>
+  <ul class="nav">
+    <li><a href="../">Home Page</a></li>
+    <li><a href="../ExecApp/">Exec. Apps</a></li>
+    <li class="current"><a href="../Voting/">Voting</a></li>
+  </ul>
+  <div class="main">
+    <header class="panel">
+      <h1>MVHS Mu Alpha Theta</h1>
+    </header>
+    <section class="f1 col">
+      <div class="f1 col panel">
+        <p>This is an intentionally hidden page for the election results.</p>
+      </div>
+      <div class="f1 col panel">
+        <p id="output"></p>
+      </div>
+    </section>
+    <footer class="panel">
+      Copyright © 2017 Adam Hordines. For inquiries, contact <a href=mailto:mvhsmat@gmail.com>mvhsmat@gmail.com</a>.
+    </footer>
+  </div>
+</body>
